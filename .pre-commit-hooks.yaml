@@ -1,6 +1,6 @@
 - id: clickbait-commit-messages
   name: clickbait-commit-messages
-  entry: env HF_TOKEN=$HF_TOKEN python make_clickbaity.py
+  entry: env HF_TOKEN=$HF_TOKEN make_clickbaity
   language: python
   always_run: true
   require_serial: true

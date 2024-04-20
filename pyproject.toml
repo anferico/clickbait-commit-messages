@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clickbait-commit-messages"
-version = "0.1.1"
+version = "v0.1.2"
 description = "Make your commit messages extremely catchy."
 authors = ["anferico <f.cariaggi4@gmail.com>"]
 license = "MIT"
@@ -12,6 +12,9 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 requests = "^2.31.0"
+
+[tool.poetry.scripts]
+make-clickbaity = "make_clickbaity:main"
 
 [tool.poetry.group.dev]
 optional = true

@@ -95,7 +95,7 @@ def get_chat_template(style: str = "mistral"):
     return style2template.get(style, "mistral")
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "commit_message_file",
@@ -147,3 +147,7 @@ if __name__ == "__main__":
         args.commit_message_file.write_text(clickbaity_commit_message)
     except Exception as e:  # pylint: disable=broad-exception-caught
         print(repr(e))  # print exception type and message
+
+
+if __name__ == "__main__":
+    main()

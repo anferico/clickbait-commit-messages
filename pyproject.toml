@@ -5,6 +5,9 @@ description = "Make your commit messages extremely catchy."
 authors = ["anferico <f.cariaggi4@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [
+    { include = "make_clickbaity.py" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"

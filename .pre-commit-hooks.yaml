@@ -1,10 +1,15 @@
-- id: clickbait-commit-messages
-  name: clickbait-commit-messages
+- id: make_clickbaity
+  name: make_clickbaity
   entry: env HF_TOKEN=$HF_TOKEN make_clickbaity
   language: python
   always_run: true
   require_serial: true
   description: "Make your commit messages extremely catchy."
   minimum_pre_commit_version: 2.9.2
-  args: ["--style", "youtube"]
+  args: [
+    "--model-name", "mistralai/Mixtral-8x7B-Instruct-v0.1",
+    "--style", "news",
+    "--template-style", "mistral",
+    "--use-emojis"
+  ]
   stages: [prepare-commit-msg]

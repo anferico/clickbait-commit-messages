@@ -52,7 +52,7 @@ def get_prompt(
     style: str = "youtube",
     template: str | None = None,
     template_style: str | None = "mistral",
-    use_emojis: bool = True,
+    use_emojis: bool = False,
 ):
     style_description = get_style_description(style)
     emoji_disclaimer = (

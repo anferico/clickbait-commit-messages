@@ -18,14 +18,15 @@ def make_clickbaity(
     template_style="mistral",
     use_emojis=True,
 ):
-    api_token = os.getenv("HF_TOKEN")
-    if api_token is None:
+    hf_access_token = os.getenv("HF_TOKEN")
+    if hf_access_token is None:
         raise ValueError(
             "You need to set the HF_TOKEN environment variable to use this "
             "function."
         )
+    print(f"$HF_TOKEN is set (ends with {hf_access_token[-4:]}), proceeding.")
     headers = {
-        "Authorization": f"Bearer {api_token}",
+        "Authorization": f"Bearer {hf_access_token}",
         "Content-Type": "application/json",
     }
     prompt = get_prompt(

@@ -3,6 +3,9 @@
 
 Make your commit messages extremely catchy.
 
+## Prerequisites
+Get yourself a Hugging Face access token if you haven't got one already. To do so, go to [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) and create a new token.
+
 ## How to use
 This tool is meant to be used in conjunction with [pre-commit](https://pre-commit.com/). In order to use it, you should:
 1. Install `clickbait-commit-messages`: `pip install clickbait-commit-messages`
@@ -13,12 +16,16 @@ This tool is meant to be used in conjunction with [pre-commit](https://pre-commi
     - repo: local
         hooks:
         - id: make-clickbaity
+          name: make-clickbaity
           entry: make-clickbaity
+          language: python
+          stages: [prepare-commit-msg]
     ```
     Please note a couple of things:
-    1. `default_install_hook_types: [pre-commit, prepare-commit-msg]` tells pre-commit to install the `make-clickbaity` git hook at a different stage than the default one (which is `pre-commit`). If you omit this line, `pre-commit` will not install this hook correctly since it's meant to run during the `prepare-commit-msg` stage (i.e. _after_ the commit is done but before the commit message is confirmed)
+    1. `default_install_hook_types: [pre-commit, prepare-commit-msg]` tells pre-commit to install the `make-clickbaity` git hook at a different stage than the default one (which is `pre-commit`). If you omit this line, `pre-commit` will _not_ install this hook to run during the `prepare-commit-msg` stage (i.e. _after_ the commit is done but before the commit message is confirmed), which is indeed the only stage this hook is meant to run at (that's why we set `stages: [prepare-commit-msg]` by the way)
     2. Rather than specifying the repo URL in the `repo` field, you must put "local". This is because in order to run properly, this hook has to have access to your local environment. In particular, it needs to be able to access the `HF_TOKEN` environment variable (see step 3)
-3. Run `export HF_TOKEN=hf_**********************************` (replace with your Hugging Face access token). This is needed as the hook needs to call the Hugging Face API to generate clickbait commit messages. If you'd rather avoid doing this every time, add that line to your `~/.bashrc` (or equivalents for other shells)
+3. Run `pre-commit install` to install the hook
+4. Run `export HF_TOKEN=hf_**********************************` (replace with your Hugging Face access token). This is needed as the hook needs to call the Hugging Face API to generate clickbait commit messages. If you'd rather avoid doing this every time, add that line to your `~/.bashrc` (or equivalents for other shells)
 
 ## Configuration options
 The behavior of this hook can be customized using the following configuration options:

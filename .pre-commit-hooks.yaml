@@ -1,6 +1,6 @@
-- id: make_clickbaity
-  name: make_clickbaity
-  entry: env HF_TOKEN=$HF_TOKEN make_clickbaity
+- id: make-clickbaity
+  name: make-clickbaity
+  entry: env HF_TOKEN=$HF_TOKEN make-clickbaity
   language: python
   always_run: true
   require_serial: true

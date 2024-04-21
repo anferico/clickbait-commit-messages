@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import sys
 from pathlib import Path
 
 import requests
@@ -99,6 +100,7 @@ def get_chat_template(style: str = "mistral"):
 
 
 def main():
+    print(sys.argv)
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "commit_message_file",

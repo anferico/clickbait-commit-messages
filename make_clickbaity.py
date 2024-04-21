@@ -17,14 +17,15 @@ def make_clickbaity(
     template=None,
     template_style="mistral",
     use_emojis=True,
-):
+) -> str:
     hf_access_token = os.getenv("HF_TOKEN")
     if hf_access_token is None:
-        raise ValueError(
-            "You need to set the HF_TOKEN environment variable to use this "
-            "function."
+        print(
+            "The HF_TOKEN environment variable is not set. Leaving the commit "
+            "message unchanged."
         )
-    print(f"$HF_TOKEN is set (ends with {hf_access_token[-4:]}), proceeding.")
+        return commit_message
+
     headers = {
         "Authorization": f"Bearer {hf_access_token}",
         "Content-Type": "application/json",
@@ -38,6 +39,7 @@ def make_clickbaity(
         json={"inputs": prompt},
         timeout=5,
     )
+    response.raise_for_status()
 
     generated_text = response.json()[0]["generated_text"]
     if generated_text.startswith(prompt):
@@ -146,8 +148,11 @@ def main():
             use_emojis=args.use_emojis,
         )
         args.commit_message_file.write_text(clickbaity_commit_message)
-    except Exception as e:  # pylint: disable=broad-exception-caught
-        print(repr(e))  # print exception type and message
+    except requests.exceptions.HTTPError as e:
+        print(
+            f"make-clickbaity: HTTP error {e.response.status_code}. Leaving "
+            "the commit message unchanged."
+        )
 
 
 if __name__ == "__main__":

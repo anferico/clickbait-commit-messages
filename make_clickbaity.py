@@ -106,6 +106,15 @@ def main():
         help="File containing the commit message to make clickbaity.",
     )
     parser.add_argument(
+        "staged_files",
+        type=Path,
+        nargs="*",
+        help=(
+            "Files that are staged for commit. This is a placeholder "
+            "argument to ignore the staged files."
+        ),
+    )
+    parser.add_argument(
         "--model-name",
         type=str,
         default="mistralai/Mixtral-8x7B-Instruct-v0.1",

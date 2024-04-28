@@ -36,5 +36,7 @@ class GroqProvider(BaseProvider):
                 }
             ],
             model=model_name,
+            timeout=2.0,
+            max_retries=3,
         )
         return chat_completion.choices[0].message.content

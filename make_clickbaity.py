@@ -17,8 +17,16 @@ def make_clickbaity(
 ) -> str:
     prompt = get_prompt(commit_message, style, use_emojis)
     provider = get_provider(provider_name)
-    clickbait_commit_message = provider.do_chat_completion(prompt, model_name)
-    return clickbait_commit_message.strip()
+    clickbait_commit_message = provider.do_chat_completion(
+        prompt, model_name
+    ).strip()
+    if clickbait_commit_message == "":
+        print(
+            "Provider returned an empty string. Leaving the commit message as "
+            "is."
+        )
+        clickbait_commit_message = commit_message
+    return clickbait_commit_message
 
 
 def get_prompt(

@@ -6,12 +6,15 @@ authors = ["anferico <f.cariaggi4@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [
+    { include = "clickbait_commit_messages" },
     { include = "make_clickbaity.py" },
 ]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 requests = "^2.31.0"
+groq = "^0.5.0"
+huggingface-hub = {extras = ["inference"], version = "^0.22.2"}
 
 [tool.poetry.scripts]
 make-clickbaity = "make_clickbaity:main"
@@ -25,6 +28,10 @@ pylint = "^3.1.0"
 
 [tool.black]
 line-length = 79
+
+[tool.isort]
+line_length = 79
+profile="black"
 
 [build-system]
 requires = ["poetry-core"]

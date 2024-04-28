@@ -21,12 +21,12 @@ class GroqProvider(BaseProvider):
             )
         self.client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
-    @lru_cache(maxsize=1)
+    @lru_cache
     def list_available_models(self) -> list[str]:
         # TODO: filter out non-active models
         return [model.id for model in self.client.models.list().data]
 
-    @lru_cache(maxsize=1)
+    @lru_cache
     def do_chat_completion(self, prompt: str, model_name: str) -> str:
         chat_completion = self.client.chat.completions.create(
             messages=[

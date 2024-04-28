@@ -21,11 +21,11 @@ class HuggingFaceProvider(BaseProvider):
             )
         self.client = InferenceClient(token=os.environ["HF_TOKEN"])
 
-    @lru_cache(maxsize=1)
+    @lru_cache
     def list_available_models(self) -> list[str]:
         return self.client.list_deployed_models()["text-generation"]
 
-    @lru_cache(maxsize=1)
+    @lru_cache
     def do_chat_completion(self, prompt: str, model_name: str) -> str:
         chat_completion = self.client.chat_completion(
             messages=[

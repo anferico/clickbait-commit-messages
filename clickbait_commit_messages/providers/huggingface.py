@@ -35,5 +35,7 @@ class HuggingFaceProvider(BaseProvider):
                 }
             ],
             model=model_name,
+            max_tokens=100,
+            stop=["\n"],
         )
         return chat_completion.choices[0].message.content

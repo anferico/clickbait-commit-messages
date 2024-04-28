@@ -18,8 +18,6 @@ def make_clickbaity(
     prompt = get_prompt(commit_message, style, use_emojis)
     provider = get_provider(provider_name)
     clickbait_commit_message = provider.do_chat_completion(prompt, model_name)
-    # if clickbait_commit_message.startswith(prompt):
-    #     clickbait_commit_message = clickbait_commit_message[len(prompt) :]
     return clickbait_commit_message.strip()
 
 

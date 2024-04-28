@@ -19,7 +19,9 @@ class GroqProvider(BaseProvider):
                 "Must set the GROQ_API_KEY environment variable to use the "
                 "'groq' provider."
             )
-        self.client = Groq(api_key=os.environ["GROQ_API_KEY"])
+        self.client = Groq(
+            api_key=os.environ["GROQ_API_KEY"], timeout=2.0, max_retries=3
+        )
 
     @lru_cache
     def list_available_models(self) -> list[str]:
@@ -36,7 +38,5 @@ class GroqProvider(BaseProvider):
                 }
             ],
             model=model_name,
-            timeout=2.0,
-            max_retries=3,
         )
         return chat_completion.choices[0].message.content

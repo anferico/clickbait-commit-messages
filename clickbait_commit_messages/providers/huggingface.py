@@ -19,7 +19,9 @@ class HuggingFaceProvider(BaseProvider):
                 "Must set the HF_TOKEN environment variable to use the "
                 "'huggingface' provider."
             )
-        self.client = InferenceClient(token=os.environ["HF_TOKEN"])
+        self.client = InferenceClient(
+            token=os.environ["HF_TOKEN"], timeout=3.0
+        )
 
     @lru_cache
     def list_available_models(self) -> list[str]:

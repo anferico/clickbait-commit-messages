@@ -20,7 +20,7 @@ class GroqProvider(BaseProvider):
                 "'groq' provider."
             )
         self.client = Groq(
-            api_key=os.environ["GROQ_API_KEY"], timeout=2.0, max_retries=3
+            api_key=os.environ["GROQ_API_KEY"], timeout=3.0, max_retries=2
         )
 
     @lru_cache

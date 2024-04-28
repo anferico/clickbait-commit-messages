@@ -27,7 +27,13 @@ class HuggingFaceProvider(BaseProvider):
 
     @lru_cache(maxsize=1)
     def do_chat_completion(self, prompt: str, model_name: str) -> str:
-        messages = [{"role": "user", "content": prompt}]
-        return self.client.chat_completion(
-            messages, model=model_name, max_tokens=100
+        chat_completion = self.client.chat_completion(
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+            model=model_name,
         )
+        return chat_completion.choices[0].message.content

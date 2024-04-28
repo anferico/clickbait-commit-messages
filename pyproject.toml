@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clickbait-commit-messages"
-version = "v0.2.0"
+version = "1.0.0"
 description = "Make your commit messages extremely catchy."
 authors = ["anferico <f.cariaggi4@gmail.com>"]
 license = "MIT"

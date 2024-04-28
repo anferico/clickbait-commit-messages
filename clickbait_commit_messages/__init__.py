@@ -1,5 +1,3 @@
-from clickbait_commit_messages.providers import (
-    GroqProvider,
-    HuggingFaceProvider,
-    get_provider,
-)
+from clickbait_commit_messages.providers import get_provider
+from clickbait_commit_messages.providers.groq import GroqProvider
+from clickbait_commit_messages.providers.huggingface import HuggingFaceProvider

@@ -2,8 +2,6 @@ from clickbait_commit_messages.providers.base import BaseProvider
 from clickbait_commit_messages.providers.errors import (
     ProviderInitializationError,
 )
-from clickbait_commit_messages.providers.groq import GroqProvider
-from clickbait_commit_messages.providers.huggingface import HuggingFaceProvider
 
 _PROVIDERS_REGISTRY = dict()
 _PROVIDERS_REGISTRY_CLASS_NAMES = set()

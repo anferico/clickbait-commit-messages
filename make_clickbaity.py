@@ -56,6 +56,15 @@ def main():
         help="File containing the commit message to make clickbaity.",
     )
     parser.add_argument(
+        "--provider",
+        type=str,
+        default="huggingface",
+        help=(
+            "The provider to use for generating the clickbaity message. "
+            "Supported providers: ['huggingface', 'groq']"
+        ),
+    )
+    parser.add_argument(
         "--model-name",
         type=str,
         default="mistralai/Mixtral-8x7B-Instruct-v0.1",
@@ -65,7 +74,10 @@ def main():
         "--style",
         type=str,
         default="youtube",
-        help="The style of clickbait to generate.",
+        help=(
+            "The style of clickbait to generate. Supported styles: "
+            "['youtube', 'news']"
+        ),
     )
     parser.add_argument(
         "--use-emojis",
@@ -78,6 +90,7 @@ def main():
     try:
         clickbaity_commit_message = make_clickbaity(
             original_commit_message,
+            provider_name=args.provider,
             model_name=args.model_name,
             style=args.style,
             use_emojis=args.use_emojis,

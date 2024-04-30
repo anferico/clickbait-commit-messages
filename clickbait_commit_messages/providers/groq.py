@@ -25,8 +25,11 @@ class GroqProvider(BaseProvider):
 
     @lru_cache
     def list_available_models(self) -> list[str]:
-        # TODO: filter out non-active models
-        return [model.id for model in self.client.models.list().data]
+        return [
+            model.id
+            for model in self.client.models.list().data
+            if model.active
+        ]
 
     @lru_cache
     def do_chat_completion(self, prompt: str, model_name: str) -> str:

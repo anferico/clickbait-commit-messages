@@ -96,4 +96,4 @@ hooks:
     If you don't receive any error message, that means you're good to go 👍
 
 ### For the Groq provider
-1. The API server returns empty responses sometimes, in which case the commit messages are left unchanged. I'm not sure why this happens, but it might be due to the high volume of requests sent to the Groq API. For this reason, if you're looking for a more reliable provider, go for Hugging Face
+1. For some reason, Llama3 models hosted on Groq (but not those hosted on Hugging Face) don't seem to like the default prompt I'm using to generate clickbait commit messages, so most of the time they just return empty responses. If you wish to use the Groq provider, consider using models other than Llama3

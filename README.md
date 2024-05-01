@@ -1,7 +1,18 @@
 # clickbait-commit-messages
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 Make your commit messages extremely catchy.
+
+Example:
+```
+$ git commit -m "remove useless comment"
+make-clickbaity..........................................................Passed
+- hook id: make-clickbaity
+- duration: 2.39s
+[master 9c72b79] 🚨 Developers Rejoice: Unnecessary Comment 🗑VANISHES in Shocking Git Commit! 😱
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+```
 
 ## Prerequisites
 - Hugging Face access token (if using the Hugging Face provider): [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)

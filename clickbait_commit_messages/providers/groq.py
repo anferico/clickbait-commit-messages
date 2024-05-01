@@ -22,11 +22,12 @@ def groq_api_call(default_return_value: Any):
                 groq.APIStatusError,
             ) as e:
                 if isinstance(e, groq.APIConnectionError):
-                    print("Groq: server could not be reached.")
+                    print("[groq] server could not be reached.")
                 if isinstance(e, groq.RateLimitError):
-                    print("Groq: rate limit exceeded.")
+                    print("[groq] rate limit exceeded.")
                 if isinstance(e, groq.APIStatusError):
-                    print("Groq: non-200 status code received.")
+                    print(f"[groq] HTTP status code {e.status_code} received.")
+                    print(f"[groq] {e.response.text}")
                 return default_return_value
 
         return wrapper

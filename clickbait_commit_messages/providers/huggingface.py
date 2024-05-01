@@ -3,7 +3,7 @@ from functools import lru_cache
 from typing import Any
 
 import huggingface_hub
-from requests.exceptions import HTTPError
+import requests
 
 from clickbait_commit_messages.providers import (
     BaseProvider,
@@ -17,11 +17,19 @@ def hf_api_call(default_return_value: Any):
         def wrapper(self, *args, **kwargs):
             try:
                 return func(self, *args, **kwargs)
-            except (huggingface_hub.InferenceTimeoutError, HTTPError) as e:
+            except (
+                huggingface_hub.InferenceTimeoutError,
+                requests.exceptions.HTTPError,
+            ) as e:
                 if isinstance(e, huggingface_hub.InferenceTimeoutError):
-                    print("Hugging Face: model unavailable/request timed out.")
-                if isinstance(e, HTTPError):
-                    print("Hugging Face: non-200 status code received.")
+                    print("[huggingface] model unavailable/request timed out.")
+                    print(f"[huggingface] {e.response.text}")
+                if isinstance(e, requests.exceptions.HTTPError):
+                    print(
+                        "[huggingface] HTTP status code "
+                        f"{e.response.status_code} received."
+                    )
+                    print(f"[huggingface] {e.response.text}")
                 return default_return_value
 
         return wrapper

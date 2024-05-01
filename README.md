@@ -29,13 +29,13 @@ This tool is meant to be used in conjunction with [pre-commit](https://pre-commi
     default_install_hook_types: [pre-commit, prepare-commit-msg]
     repos:
     - repo: local
-        hooks:
-        - id: make-clickbaity
-          name: make-clickbaity
-          entry: make-clickbaity
-          language: python
-          stages: [prepare-commit-msg]
-          verbose: true
+      hooks:
+      - id: make-clickbaity
+        name: make-clickbaity
+        entry: make-clickbaity
+        language: python
+        stages: [prepare-commit-msg]
+        verbose: true
     ```
     Please note a couple of things:
     1. `default_install_hook_types: [pre-commit, prepare-commit-msg]` tells pre-commit to install the `make-clickbaity` git hook at a different stage than the default one (which is `pre-commit`). If you omit this line, `pre-commit` will _not_ install this hook to run during the `prepare-commit-msg` stage (i.e. _after_ the commit is done but before the commit message is confirmed), which is indeed the only stage this hook is meant to run at (that's why we set `stages: [prepare-commit-msg]` by the way)

@@ -7,6 +7,7 @@ license = "MIT"
 readme = "README.md"
 packages = [
     { include = "clickbait_commit_messages" },
+    { include = "list_available_models.py" },
     { include = "make_clickbaity.py" },
 ]
 
@@ -18,6 +19,7 @@ huggingface-hub = {extras = ["inference"], version = "^0.22.2"}
 
 [tool.poetry.scripts]
 make-clickbaity = "make_clickbaity:main"
+list-models = "list_available_models:list_available_models"
 
 [tool.poetry.group.dev]
 optional = true

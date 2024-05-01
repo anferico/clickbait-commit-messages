@@ -48,7 +48,7 @@ This tool is meant to be used in conjunction with [pre-commit](https://pre-commi
 The behavior of this hook can be customized using the following configuration options:
 - `--provider`: The provider to use for generating clickbait commit messages. Options: [`huggingface`, `groq`]. Defaults to `huggingface`
 - `--model-name`: The actual model to use to turn regular commit messages into clickbaity ones. Each provider has its own available models. Defaults to `mistralai/Mixtral-8x7B-Instruct-v0.1`
-  - `list-models <provider_name>` lists all the available models for a given provider
+  - `list-models -p <provider_name>` lists all the available models for a given provider
 - `--style`: The style of clickbait to generate. Supported values: `youtube` (akin to a catchy title of a YouTube video), `news` (akin to a clickbaity title of a news article). Defaults to `youtube`
 - `--use-emojis`: Use emojis in the clickbaity message
 

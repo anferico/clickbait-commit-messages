@@ -84,11 +84,8 @@ hooks:
 ### For the Hugging Face provider
 1. Some models, such as `mistralai/Mixtral-8x7B-Instruct-v0.1`, are _gated_, meaning that you need to explicitly request access to them before you can use them via the API. To do that, visit the home page of the model in Hugging Face and follow the instructions to request access to it
 
-2. Some models, such as `meta-llama/Meta-Llama-3-8B-Instruct`, may not be usable on the free tier of the API. When trying to use them to generate a clickbait commit message, you might get an **HTTP 403** error along the lines of:
-    ```json
-    {"error":"The model meta-llama/Meta-Llama-3-8B-Instruct is too large to be loaded automatically (16GB > 10GB). Please use Spaces (https://huggingface.co/spaces) or Inference Endpoints (https://huggingface.co/inference-endpoints)."}
-    ```
-    In order to probe whether a model will be usable or not, you can shoot a cURL request like the following and check the response (replace `${MODEL_NAME}` and `${API_TOKEN}` appropriately):
+2. Some models, such as `meta-llama/Meta-Llama-3-70B-Instruct`, may not be usable on the free tier of the API. When trying to use them to generate a clickbait commit message, you might get an error saying you need a Pro subscription or something similar.
+    In order to probe whether a model will be usable or not on the free tier, you can shoot a cURL request like the following and check the response (replace `${MODEL_NAME}` and `${API_TOKEN}` appropriately):
     ```curl
     curl https://api-inference.huggingface.co/models/${MODEL_NAME} \
         -X POST \
@@ -96,7 +93,7 @@ hooks:
         -H "Content-Type: application/json" \
         -H "Authorization: Bearer ${API_TOKEN}"
     ```
-    If you receive an error message like the one showed above, then it means you can't use that model on your current API tier. Otherwise, you're good to go 👍
+    If you don't receive any error message, that means you're good to go 👍
 
 ### For the Groq provider
 1. The API server returns empty responses sometimes, in which case the commit messages are left unchanged. I'm not sure why this happens, but it might be due to the high volume of requests sent to the Groq API. For this reason, if you're looking for a more reliable provider, go for Hugging Face
